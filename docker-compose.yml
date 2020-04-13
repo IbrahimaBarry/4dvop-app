@@ -5,8 +5,8 @@ services:
     environment:
       - USERNAME
       - PASSWORD
-    volumes:
-      - webdata:./website:/var/www/html
+    # volumes:
+    #   - webdata:./website:/var/www/html
     depends_on:
       - API
     volumes:
