@@ -1,34 +1,22 @@
-version: "3.7"
+version: "3"
 services:
   website:
     image: php:apache
     environment:
       - USERNAME
       - PASSWORD
-    # volumes:
-    #   - webdata:./website:/var/www/html
+    volumes:
+      - webdata:./website:/var/www/html
     depends_on:
       - API
-    volumes:
-      - type: bind
-        source: mydata
-        target: /data
-        volume:
-          nocopy: true
-      # - type: bind
-      #   source: ./static
-      #   target: /opt/app/static
-    ports:
-      - target: 80
-        published: 80
-        protocol: tcp
-        mode: host
+    expose:
+      - 80
   API:
     image: pozos
+    volumes:
+      - mydata:/data
     ports:
-      - target: 5000
-        published: 5000
-        protocol: tcp
-        mode: host
+      - 5050
 volumes:
+  webdata:
   mydata:
